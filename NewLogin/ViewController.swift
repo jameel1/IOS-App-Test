@@ -8,8 +8,10 @@
 
 import UIKit
 import Firebase
+import GoogleSignIn
 
-class ViewController: UIViewController {
+
+class ViewController: UIViewController,GIDSignInUIDelegate {
     
     @IBOutlet weak var singinlabel: UILabel!
     @IBOutlet weak var signinselecctor: UISegmentedControl!
@@ -22,6 +24,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        //Google stuff
+        let googleButton = GIDSignInButton()
+        googleButton.frame = CGRect(x: 16, y: 520, width: view.frame.width - 32, height: 50)
+        view.addSubview(googleButton)
+        googleButton.style = .wide
+        GIDSignIn.sharedInstance().uiDelegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -71,6 +79,7 @@ class ViewController: UIViewController {
             }
         })
         }
+           
     }
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
