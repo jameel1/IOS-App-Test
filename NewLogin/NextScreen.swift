@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import GoogleSignIn
 
 class NextScreen: UIViewController {
 
@@ -23,6 +24,7 @@ class NextScreen: UIViewController {
     }
     
     @IBAction func logout(_ sender: UIButton) {
+        GIDSignIn.sharedInstance().signOut()
         let firebaseAuth = FIRAuth.auth()
         do {
             try firebaseAuth?.signOut()

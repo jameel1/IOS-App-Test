@@ -55,6 +55,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		6D248F9E1E720B3200B4C5B9 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6DD8E6391E6F8CA30005A046 /* ViewController.swift */,
+				6DD8E64E1E7056B60005A046 /* NextScreen.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		6DD8E62B1E6F8CA20005A046 = {
 			isa = PBXGroup;
 			children = (
@@ -76,9 +85,8 @@
 		6DD8E6361E6F8CA30005A046 /* NewLogin */ = {
 			isa = PBXGroup;
 			children = (
+				6D248F9E1E720B3200B4C5B9 /* Controller */,
 				6DD8E6371E6F8CA30005A046 /* AppDelegate.swift */,
-				6DD8E6391E6F8CA30005A046 /* ViewController.swift */,
-				6DD8E64E1E7056B60005A046 /* NextScreen.swift */,
 				6DD8E63B1E6F8CA30005A046 /* Main.storyboard */,
 				6DD8E6411E6F8CA30005A046 /* Assets.xcassets */,
 				6DD8E6431E6F8CA30005A046 /* LaunchScreen.storyboard */,
