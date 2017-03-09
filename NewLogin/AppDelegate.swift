@@ -21,7 +21,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         // Override point for customization after application launch.
         FIRApp.configure()
         GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
+        GIDSignIn.sharedInstance().signInSilently()
         GIDSignIn.sharedInstance().delegate = self
+        // check for user's token
+        if GIDSignIn.sharedInstance().hasAuthInKeychain() {
+            /* Code to show your tab bar controller */
+            let sb = UIStoryboard(name: "Main", bundle: nil)
+            if let tabBarVC = sb.instantiateViewController(withIdentifier: "NextScreen") as? UIViewController {
+                window!.rootViewController = tabBarVC
+
+            }
+        }
         return true
     }
     //GOOGLE STUFF
@@ -43,6 +53,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 return
             }
             print("User Added To Firebase")
+            let sb = UIStoryboard(name: "Main", bundle: nil)
+            if let tabBarVC = sb.instantiateViewController(withIdentifier: "NextScreen") as? UIViewController {
+                self.window!.rootViewController = tabBarVC
+            }
+            
+            
         })
         }
     }
@@ -54,6 +70,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                                                      annotation: [:])
     
     }
+    
     func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!,
                 withError error: NSError!) {
         if (error == nil) {

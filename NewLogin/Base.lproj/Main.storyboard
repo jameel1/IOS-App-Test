@@ -25,7 +25,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="FVL-wt-0Zv">
                                 <rect key="frame" x="16" y="180" width="343" height="312"/>
                                 <subviews>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="dzm-BT-Jn8">
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="dzm-BT-Jn8">
                                         <rect key="frame" x="107" y="0.0" width="129" height="29.5"/>
                                         <segments>
                                             <segment title="Sign In"/>
@@ -35,7 +35,7 @@
                                             <action selector="changer:" destination="BYZ-38-t0r" eventType="valueChanged" id="TCK-sf-XeO"/>
                                         </connections>
                                     </segmentedControl>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Sign In" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wWn-Kl-08A">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign In" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wWn-Kl-08A">
                                         <rect key="frame" x="145.5" y="58.5" width="52" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -123,7 +123,7 @@
         <!--Next Screen-->
         <scene sceneID="Mip-kx-Jf9">
             <objects>
-                <viewController id="kmi-sJ-1ns" customClass="NextScreen" customModule="NewLogin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NextScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="kmi-sJ-1ns" customClass="NextScreen" customModule="NewLogin" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="omZ-zk-yTk"/>
                         <viewControllerLayoutGuide type="bottom" id="O6B-KU-3a9"/>
