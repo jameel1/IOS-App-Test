@@ -12,10 +12,15 @@ import GoogleSignIn
 
 class NextScreen: UIViewController {
 
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Email and Password pull
+     
 
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,6 +42,7 @@ class NextScreen: UIViewController {
         
         
     }
+    
 
    
 
