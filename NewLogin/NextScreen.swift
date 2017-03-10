@@ -19,7 +19,20 @@ class NextScreen: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //Email and Password pull
-     
+        let userID = FIRAuth.auth()?.currentUser?.uid
+        FIRDatabase.database().reference().child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+            // Get user value
+            if let savedData = snapshot.value as? [String: AnyObject]{
+           
+            self.nameLabel.text = savedData["Name"] as? String
+            self.emailLabel.text = savedData["Email"] as? String
+            
+            print(snapshot)
+            }
+            // ...
+        }) { (error) in
+            print(error.localizedDescription)
+        }
 
     }
 
