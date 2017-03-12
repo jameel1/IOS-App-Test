@@ -27,7 +27,6 @@ class ViewController: UIViewController,GIDSignInUIDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //Database Ref
         ref = FIRDatabase.database().reference()
         //Google stuff
         let googleButton = GIDSignInButton()
@@ -36,11 +35,11 @@ class ViewController: UIViewController,GIDSignInUIDelegate {
         googleButton.style = .wide
         GIDSignIn.sharedInstance().uiDelegate = self
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    //BAR STYLE
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
+    
 //email login
     @IBAction func changer(_ sender: UISegmentedControl) {
         isSignIn = !isSignIn
@@ -84,8 +83,7 @@ class ViewController: UIViewController,GIDSignInUIDelegate {
             if let u = user {
             self.performSegue(withIdentifier: "toHomeScreen", sender: self)
             print("User Account Created")
-               self.ref?.child("users").child((user?.uid)!).setValue(["Name": name, "Email": email])
-                
+               self.ref?.child("Users").child((user?.uid)!).setValue(["Name": name, "Email": email])
             }
                 else {
                //Error MSG
@@ -95,7 +93,6 @@ class ViewController: UIViewController,GIDSignInUIDelegate {
             }
         })
         }
-           
     }
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

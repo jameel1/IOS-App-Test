@@ -14,33 +14,30 @@ class NextScreen: UIViewController {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var profileImage: UIImageView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //Email and Password pull
         let userID = FIRAuth.auth()?.currentUser?.uid
-        FIRDatabase.database().reference().child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+        FIRDatabase.database().reference().child("Users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
             // Get user value
             if let savedData = snapshot.value as? [String: AnyObject]{
-           
             self.nameLabel.text = savedData["Name"] as? String
             self.emailLabel.text = savedData["Email"] as? String
-            
             print(snapshot)
             }
-            // ...
-        }) { (error) in
-            print(error.localizedDescription)
-        }
-
+        })
+        /*GoogleData
+        let profileURL = GIDSignIn.sharedInstance().currentUser.profile.imageURL(withDimension: 125)
+        print(profileURL)
+        profileImage.image = UIImage(data: NSData(contentsOf: profileURL!)! as Data)*/
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    //BAR STYLE
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
-    
     @IBAction func logout(_ sender: UIButton) {
         GIDSignIn.sharedInstance().signOut()
         let firebaseAuth = FIRAuth.auth()
@@ -49,14 +46,23 @@ class NextScreen: UIViewController {
             print("User Logged Out")
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
-            
         }
         self.performSegue(withIdentifier: "backtologinscreen", sender: self)
+    }
+    func profileImageView() -> UIImageView {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFill
+        
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectorProfileImage)))
+        imageView.isUserInteractionEnabled = true
         
         
+        return imageView
     }
     
-
-   
-
+    func handleSelectorProfileImage() {
+        print(3123)
+    }
 }
+

@@ -15,8 +15,7 @@ import GoogleSignIn
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
     var window: UIWindow?
-
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FIRApp.configure()
@@ -29,62 +28,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             let sb = UIStoryboard(name: "Main", bundle: nil)
             if let tabBarVC = sb.instantiateViewController(withIdentifier: "NextScreen") as? UIViewController {
                 window!.rootViewController = tabBarVC
-
             }
         }
         return true
     }
-    //GOOGLE STUFF
-    
+    //GOOGLE Login and Database
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {
         print(error.localizedDescription)
         }
         else {
         print("User Logged Into Google")
-        
-        
-            guard let idToken = user.authentication.idToken else { return }
-            guard let accessToken = user.authentication.accessToken else { return }
-            let credentials = FIRGoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
+        guard let idToken = user.authentication.idToken else { return }
+        guard let accessToken = user.authentication.accessToken else { return }
+        guard let googleEmail = user.profile.email else { return }
+        guard let googleName1 = user.profile.name else { return }
+        guard let profileURL = user.profile.imageURL(withDimension: 125) else { return }
+        let googleName = googleName1.capitalized
+        let credentials = FIRGoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
         FIRAuth.auth()?.signIn(with: credentials, completion: { (user, error) in
             if let error = error {
                 print(error.localizedDescription)
                 return
             }
             print("User Added To Firebase")
+            print(googleName, googleEmail)
+            print(profileURL)
+            FIRDatabase.database().reference().child("Users").child((user?.uid)!).setValue(["Name": googleName, "Email": googleEmail])
             let sb = UIStoryboard(name: "Main", bundle: nil)
             if let tabBarVC = sb.instantiateViewController(withIdentifier: "NextScreen") as? UIViewController {
-                self.window!.rootViewController = tabBarVC
+                self.window!.rootViewController?.present(tabBarVC, animated: true, completion: nil)
             }
-            
-            
         })
         }
     }
-    
     func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any])
         -> Bool {
             return GIDSignIn.sharedInstance().handle(url,
                                                      sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
                                                      annotation: [:])
     
-    }
-    
-    func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!,
-                withError error: NSError!) {
-        if (error == nil) {
-            // Perform any operations on signed in user here.
-            let userId = user.userID                  // For client-side use only!
-            let idToken = user.authentication.idToken // Safe to send to the server
-            let fullName = user.profile.name
-            let givenName = user.profile.givenName
-            let familyName = user.profile.familyName
-            let email = user.profile.email
-            // ...
-        } else {
-            print("\(error.localizedDescription)")
-        }
     }
     
     func applicationWillResignActive(_ application: UIApplication) {

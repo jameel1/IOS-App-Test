@@ -20,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		34E2C26DCA2B37ED4DDBCE8E /* Pods-NewLogin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewLogin.release.xcconfig"; path = "Pods/Target Support Files/Pods-NewLogin/Pods-NewLogin.release.xcconfig"; sourceTree = "<group>"; };
+		6D5A2C531E73410B002FBE27 /* NewLogin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NewLogin.entitlements; sourceTree = "<group>"; };
 		6DD8E6341E6F8CA30005A046 /* NewLogin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewLogin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DD8E6371E6F8CA30005A046 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6DD8E6391E6F8CA30005A046 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -85,6 +86,7 @@
 		6DD8E6361E6F8CA30005A046 /* NewLogin */ = {
 			isa = PBXGroup;
 			children = (
+				6D5A2C531E73410B002FBE27 /* NewLogin.entitlements */,
 				6D248F9E1E720B3200B4C5B9 /* Controller */,
 				6DD8E6371E6F8CA30005A046 /* AppDelegate.swift */,
 				6DD8E63B1E6F8CA30005A046 /* Main.storyboard */,
@@ -143,6 +145,14 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 5XUW2EJ8TL;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -372,6 +382,7 @@
 			baseConfigurationReference = C607022325AB3C1BA240E882 /* Pods-NewLogin.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = NewLogin/NewLogin.entitlements;
 				DEVELOPMENT_TEAM = 5XUW2EJ8TL;
 				INFOPLIST_FILE = NewLogin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -386,6 +397,7 @@
 			baseConfigurationReference = 34E2C26DCA2B37ED4DDBCE8E /* Pods-NewLogin.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = NewLogin/NewLogin.entitlements;
 				DEVELOPMENT_TEAM = 5XUW2EJ8TL;
 				INFOPLIST_FILE = NewLogin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
