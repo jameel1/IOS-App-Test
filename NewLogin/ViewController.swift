@@ -25,6 +25,15 @@ class ViewController: UIViewController,GIDSignInUIDelegate {
     
     var isSignIn:Bool = true
     
+    let profileImageView: UIImageView = {
+        let img = UIImageView()
+        img.image = UIImage(named: "ic_file_upload_white_48pt")
+        img.translatesAutoresizingMaskIntoConstraints = false
+        img.contentMode = .scaleAspectFill
+        return img
+        
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = FIRDatabase.database().reference()
@@ -40,7 +49,7 @@ class ViewController: UIViewController,GIDSignInUIDelegate {
         return .lightContent
     }
     
-//email login
+//Changer Login / Register
     @IBAction func changer(_ sender: UISegmentedControl) {
         isSignIn = !isSignIn
         if isSignIn {
@@ -56,48 +65,50 @@ class ViewController: UIViewController,GIDSignInUIDelegate {
             namelabel.isHidden = false
         }
     }
-    //Login
-   @IBAction func login(_ sender: UIButton) {
-    let namec = nametext.text
-    if let email = emailfeild.text, let pass = passwordfeild.text, let name = namec?.capitalized
-        
+    //Login Email
+    @IBAction func login(_ sender: UIButton) {
+        let namec = nametext.text
+        if let email = emailfeild.text, let pass = passwordfeild.text, let name = namec?.capitalized
+            
         {
-    if isSignIn {
-        FIRAuth.auth()?.signIn(withEmail: email, password: pass, completion: { (user, error) in
-            if let u = user {
-                print("User Logged In")
-                 self.performSegue(withIdentifier: "toHomeScreen", sender: self)
-                
+            if isSignIn {
+                FIRAuth.auth()?.signIn(withEmail: email, password: pass, completion: { (user, error) in
+                    if let u = user {
+                        print("User Logged In")
+                        self.performSegue(withIdentifier: "toHomeScreen", sender: self)
+                        
+                    }
+                    else {
+                        //Error MSG
+                        let alert = UIAlertController(title: "Account Error", message: "\(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.alert)
+                        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                })
             }
             else {
-                //Error MSG
-                let alert = UIAlertController(title: "Account Error", message: "\(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.alert)
-                alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+                //Register
+                FIRAuth.auth()?.createUser(withEmail: email, password: pass, completion: { (user, error) in
+                    if let u = user {
+                        self.performSegue(withIdentifier: "toHomeScreen", sender: self)
+                        print("User Account Created")
+            self.ref?.child("Users").child((user?.uid)!).setValue(["Name": name, "Email": email])
+                    }
+                        
+                        
+                    else {
+                        //Error MSG
+                        let alert = UIAlertController(title: "Account Error", message: "\(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.alert)
+                        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                })
             }
-        })
-    }
-    else {
-        //Register
-        FIRAuth.auth()?.createUser(withEmail: email, password: pass, completion: { (user, error) in
-            if let u = user {
-            self.performSegue(withIdentifier: "toHomeScreen", sender: self)
-            print("User Account Created")
-               self.ref?.child("Users").child((user?.uid)!).setValue(["Name": name, "Email": email])
-            }
-                else {
-               //Error MSG
-                let alert = UIAlertController(title: "Account Error", message: "\(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.alert)
-                alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
-            }
-        })
         }
     }
-    }
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+
+        override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         emailfeild.resignFirstResponder()
         passwordfeild.resignFirstResponder()
     }
 }
-

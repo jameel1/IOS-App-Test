@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             /* Code to show your tab bar controller */
             let sb = UIStoryboard(name: "Main", bundle: nil)
             if let tabBarVC = sb.instantiateViewController(withIdentifier: "NextScreen") as? UIViewController {
-                window!.rootViewController = tabBarVC
+                self.window!.rootViewController?.present(tabBarVC, animated: true, completion: nil)
             }
         }
         return true
@@ -57,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             FIRDatabase.database().reference().child("Users").child((user?.uid)!).setValue(["Name": googleName, "Email": googleEmail])
             let sb = UIStoryboard(name: "Main", bundle: nil)
             if let tabBarVC = sb.instantiateViewController(withIdentifier: "NextScreen") as? UIViewController {
-                self.window!.rootViewController?.present(tabBarVC, animated: true, completion: nil)
+            self.window!.rootViewController?.present(tabBarVC, animated: true, completion: nil)
             }
         })
         }

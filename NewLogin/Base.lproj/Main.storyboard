@@ -22,8 +22,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="FVL-wt-0Zv">
-                                <rect key="frame" x="16" y="178" width="343" height="312"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="FVL-wt-0Zv">
+                                <rect key="frame" x="16" y="194" width="343" height="312"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="dzm-BT-Jn8">
                                         <rect key="frame" x="107" y="0.0" width="129" height="29"/>
@@ -120,7 +120,7 @@
                         <color key="backgroundColor" white="0.176451459" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="FVL-wt-0Zv" secondAttribute="trailing" id="F3j-OZ-Grg"/>
-                            <constraint firstItem="FVL-wt-0Zv" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Vtz-Dv-wpM"/>
+                            <constraint firstItem="FVL-wt-0Zv" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="16.5" id="Vtz-Dv-wpM"/>
                             <constraint firstItem="FVL-wt-0Zv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="jn0-N8-Wf4"/>
                         </constraints>
                     </view>
@@ -185,17 +185,12 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ic_file_upload_white_48pt" translatesAutoresizingMaskIntoConstraints="NO" id="Lyp-sG-lKf">
-                                <rect key="frame" x="67" y="128" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.176451459" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="emailLabel" destination="rzK-ah-eTt" id="U65-JW-qtV"/>
                         <outlet property="nameLabel" destination="gIc-oS-OtF" id="SPm-YJ-j75"/>
-                        <outlet property="profileImage" destination="Lyp-sG-lKf" id="Mvi-xU-gyL"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="backtologinscreen" id="c9w-We-vF9"/>
                     </connections>
                 </viewController>
@@ -204,7 +199,4 @@
             <point key="canvasLocation" x="957.60000000000002" y="36.431784107946029"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="ic_file_upload_white_48pt" width="48" height="48"/>
-    </resources>
 </document>

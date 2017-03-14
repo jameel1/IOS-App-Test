@@ -14,9 +14,7 @@ class NextScreen: UIViewController {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
-    @IBOutlet weak var profileImage: UIImageView!
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         //Email and Password pull
@@ -34,6 +32,7 @@ class NextScreen: UIViewController {
         print(profileURL)
         profileImage.image = UIImage(data: NSData(contentsOf: profileURL!)! as Data)*/
     }
+
     //BAR STYLE
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -49,20 +48,4 @@ class NextScreen: UIViewController {
         }
         self.performSegue(withIdentifier: "backtologinscreen", sender: self)
     }
-    func profileImageView() -> UIImageView {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFill
-        
-        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectorProfileImage)))
-        imageView.isUserInteractionEnabled = true
-        
-        
-        return imageView
-    }
-    
-    func handleSelectorProfileImage() {
-        print(3123)
-    }
 }
-
